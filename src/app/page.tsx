@@ -1,4 +1,5 @@
 import { IngredientForm } from "@/component/FormComponent/page";
+import GptChat from "@/component/serverComponent/page";
 
 export default function Home() {
   return (
@@ -6,6 +7,7 @@ export default function Home() {
       <div className="w-full max-w-lg">
         <h1 className="text-center">List of ingredients</h1>
         <IngredientForm />
+        <GptChat />
       </div>
     </div>
   );

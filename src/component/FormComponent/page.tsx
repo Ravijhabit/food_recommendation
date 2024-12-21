@@ -15,6 +15,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import GptChat from "../serverComponent/page";
 
 const formSchema = z.object({
 	ingredients: z.array(z.object({ ingredient: z.string() })),
@@ -29,7 +30,14 @@ export function IngredientForm() {
 	});
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
-		console.log(values);
+        const queryParams = new URLSearchParams();
+		let ingredientsList = '';
+		for (const ingredient of values.ingredients) {
+			ingredientsList += `${ingredient},`;
+		}
+        queryParams.append('ingredients', ingredientsList);
+        const url = `?${queryParams.toString()}`;
+        window.location.href = url;
 	}
 
 	function addIngredient() {
