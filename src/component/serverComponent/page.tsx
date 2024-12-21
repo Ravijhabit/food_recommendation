@@ -9,11 +9,15 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { useSearchParams } from "next/navigation";
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-	apiKey: process.env.OPENAI_API_KEY,
+	apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY || (() => { throw new Error("OPENAI_API_KEY is not set in the environment variables"); })(),
+    dangerouslyAllowBrowser: true
 });
 
 // Types
